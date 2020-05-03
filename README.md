@@ -1,0 +1,2 @@
+# Randomly
+Randomly is an android application made with MIT App Inventor. Its purpose is to provide users with free, blissful entertainment. Randomly uses free API's from all around the internet to generate entertainment. Randomly can tell you jokes, advice, interesting facts, and much more! The API's the application uses are not ones I created myself, but were made and run by some generous internet strangers.
