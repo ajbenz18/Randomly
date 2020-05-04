@@ -12,3 +12,4 @@ https://uselessfacts.jsph.pl/random.json?language=en
 https://api.kanye.rest/
 https://corporatebs-generator.sameerkumar.website/
 https://api.quotable.io/random
+https://dog.ceo/api/breeds/image/random
