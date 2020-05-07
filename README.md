@@ -9,13 +9,22 @@ To run Randomly on android, just install the APK file (It should be on the Googl
 
 The best way to view and edit the android code is by importing the .aia file into MIT App Inventor. Its free to sign up, and they allow you to create applications using some pretty simplistic drag-and-drop, block style coding.
 
+If you find any bugs or other free web API's you'd like me to add functionality for let me know!
+
 
 Here are the API's the current version uses:
 https://api.adviceslip.com
+
 https://icanhazdadjoke.com
+
 https://uselessfacts.jsph.pl/random.json?language=en
+
 https://api.kanye.rest/
+
 https://corporatebs-generator.sameerkumar.website/
+
 https://api.whatdoestrumpthink.com
+
 https://api.quotable.io/random
+
 https://dog.ceo/api/breeds/image/random
