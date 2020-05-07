@@ -13,6 +13,7 @@ If you find any bugs or other free web API's you'd like me to add functionality 
 
 
 Here are the API's the current version uses:
+
 https://api.adviceslip.com
 
 https://icanhazdadjoke.com
