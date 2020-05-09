@@ -7,9 +7,9 @@ from io import BytesIO
 import clipboard
 
 
-def autoResizeImage(image):
-    # height=image.shape[0]
-    # width=image.shape[1]
+def autoResizeImage(image): 
+    """given a PIL image, this function scales it down to a more reasonable size
+     if its larger than 650x650"""
     print(image.height, image.width)
     larger=image.height
     if (image.width>image.height):
@@ -21,8 +21,9 @@ def autoResizeImage(image):
         print(image.height, image.width)
     return image
 
-class ScrollFrame(tk.Frame): #credit to @mp035 on github. This is his scrollableFrame class
-    #https://gist.github.com/mp035/9f2027c3ef9172264532fcd6262f3b01
+class ScrollFrame(tk.Frame): 
+    """#credit to @mp035 on github. This is his scrollableFrame class
+    https://gist.github.com/mp035/9f2027c3ef9172264532fcd6262f3b01"""
     def __init__(self, parent):
         super().__init__(parent) # create a frame (self)
 
@@ -50,16 +51,18 @@ class ScrollFrame(tk.Frame): #credit to @mp035 on github. This is his scrollable
         self.canvas.itemconfig(self.canvas_window, width = canvas_width)            #whenever the size of the canvas changes alter the window region respectively.
 
 class Menu(tk.Frame):
+    """The main object of the program"""
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         self.master=master
-        self.scrollFrame=ScrollFrame(self)
+        self.scrollFrame=ScrollFrame(self) #creates the scrollable frame
         self.master.title("Randomly Fun")
         self.master.geometry("400x500")
-        self.master.geometry("+%d+%d" % (300, 100))
+        self.master.geometry("+%d+%d" % (300, 100)) #places it on the left side of the screen
         self.scrollFrame.viewPort.grid_columnconfigure(0, weight=1)
         self.scrollFrame.viewPort.grid_rowconfigure(0, weight=1)
         self.header=tk.Label(self.scrollFrame.viewPort, bg="light blue", text="Randomly Fun", font=headerFont, fg="blue")
+        #all widgets should be placed in .viewPort
         self.header.grid(row=0, column=0, padx=9)
         self.jokeButton=tk.Button(self.scrollFrame.viewPort, height=2, text="Tell me a joke", command=self.populateJoke)
         self.jokeButton.grid(row=1, column=0, sticky="nsew")
@@ -78,10 +81,11 @@ class Menu(tk.Frame):
         self.adviceButton=tk.Button(self.scrollFrame.viewPort, height=2, text="Show me a cute dog picture", command=self.populateDogPic)
         self.adviceButton.grid(row=8, column=0, sticky="nsew")
         self.scrollFrame.pack(side="top", fill="both", expand=True)
-        self.displayer=DisplayWindow(self.scrollFrame.viewPort)
-        self.displayer.frame.withdraw()
+        self.displayer=DisplayWindow(self.scrollFrame.viewPort) #creates the window the jokes, facts, etc are displayed in
+        self.displayer.frame.withdraw() #initially hides the window
     def findDogBreed(self, url):
-        pos=url.rfind("breeds/")+7
+        """given the url the dog picture is in, it finds the breed"""
+        pos=url.rfind("breeds/")+7 #just finds the correct spot in the url
         breed=""
         for i in url[pos:]:
             if i=="/":
@@ -91,6 +95,9 @@ class Menu(tk.Frame):
         return breed
 
     def populateJoke(self):
+        """tries to update the display window, it it fails, that means the user closed it
+        so it must be recreated. Gets the joke from the API and puts it into the message 
+        on the display window."""
         try:
             self.displayer.frame.update()
             self.displayer.frame.deiconify()
@@ -99,8 +106,11 @@ class Menu(tk.Frame):
         response=requests.get("https://icanhazdadjoke.com", headers={"Accept": "text/plain"})
         self.displayer.item.configure(text=response.text)
         self.displayer.lbl1.configure(text="Joke")
-        self.displayer.pic.grid_forget()
+        self.displayer.pic.grid_forget() #this hides the label widget that might hold the dog picture
     def populateFact(self):
+        """tries to update the display window, it it fails, that means the user closed it
+        so it must be recreated. Gets the fact from the API and puts it into the message 
+        on the display window."""
         try:
             self.displayer.frame.update()
             self.displayer.frame.deiconify()
@@ -111,6 +121,9 @@ class Menu(tk.Frame):
         self.displayer.lbl1.configure(text="Interesting Fact")
         self.displayer.pic.grid_forget()
     def populateAdvice(self):
+        """tries to update the display window, it it fails, that means the user closed it
+        so it must be recreated. Gets the advice from the API and puts it into the message 
+        on the display window."""
         try:
             self.displayer.frame.update()
             self.displayer.frame.deiconify()
@@ -121,6 +134,9 @@ class Menu(tk.Frame):
         self.displayer.lbl1.configure(text="Advice")
         self.displayer.pic.grid_forget()
     def populateKanyeQuote(self):
+        """tries to update the display window, it it fails, that means the user closed it
+        so it must be recreated. Gets the quote from the API and puts it into the message 
+        on the display window."""
         try:
             self.displayer.frame.update()
             self.displayer.frame.deiconify()
@@ -131,6 +147,9 @@ class Menu(tk.Frame):
         self.displayer.lbl1.configure(text="Kanye West Quotes")
         self.displayer.pic.grid_forget()
     def populateFamousQuote(self):
+        """tries to update the display window, it it fails, that means the user closed it
+        so it must be recreated. Gets the quote from the API and puts it into the message 
+        on the display window."""
         try:
             self.displayer.frame.update()
             self.displayer.frame.deiconify()
@@ -143,6 +162,9 @@ class Menu(tk.Frame):
         self.displayer.lbl1.configure(text="Famous Quotes")
         self.displayer.pic.grid_forget()
     def populateNonsense(self):
+        """tries to update the display window, it it fails, that means the user closed it
+        so it must be recreated. Gets the message from the API and puts it into the message 
+        on the display window."""
         try:
             self.displayer.frame.update()
             self.displayer.frame.deiconify()
@@ -153,6 +175,9 @@ class Menu(tk.Frame):
         self.displayer.lbl1.configure(text="Corporate Nonsense")
         self.displayer.pic.grid_forget()
     def populateTrumpQuote(self):
+        """tries to update the display window, it it fails, that means the user closed it
+        so it must be recreated. Gets the quote from the API and puts it into the message 
+        on the display window."""
         try:
             self.displayer.frame.update()
             self.displayer.frame.deiconify()
@@ -163,7 +188,10 @@ class Menu(tk.Frame):
         self.displayer.lbl1.configure(text="Donald Trump Quote")
         self.displayer.pic.grid_forget()
     def populateDogPic(self):
-        global img
+        """tries to update the display window, it it fails, that means the user closed it
+        so it must be recreated. Gets the picture's url from the API and puts the image
+        into the message on the display window."""
+        global img #the image must be held globally or else tkinter will allow it to go out of scope
         global link
         try:
             self.displayer.frame.update()
@@ -176,10 +204,10 @@ class Menu(tk.Frame):
         response2 = requests.get(link)
         img_data = response2.content
         img =Image.open(BytesIO(img_data))
-        img=autoResizeImage(img)
+        img=autoResizeImage(img) #resizes the image if its too large
         img=ImageTk.PhotoImage(img)
         self.displayer.item.configure(text="Breed: "+self.findDogBreed(link))
-        self.displayer.pic.configure(image=img)
+        self.displayer.pic.configure(image=img) #the picture is displayed in a label named "pic"
         self.displayer.pic.grid(row=2, column=0)
         self.displayer.lbl1.configure(text="Cute Dog Picture")
 
@@ -187,27 +215,30 @@ class Menu(tk.Frame):
 class DisplayWindow:
     def __init__(self, parent):
         self.frame=tk.Toplevel(parent)
-        self.frame.maxsize(800, 800)
+        self.frame.maxsize(800, 800) #so that the window won't expand to fill too much of the screen
         self.frame.title("")
         self.frame.configure(bg="light blue")
-        self.lbl1=tk.Label(self.frame, text="test", font=headerFont, bg="light blue")
-        self.lbl1.config(fg="blue")
+        #lbl1 will hold the type of content being displayed
+        self.lbl1=tk.Label(self.frame, text="test", font=headerFont, bg="light blue", fg="blue")
+        # self.lbl1.config(fg="blue")
         self.lbl1.grid(row=0, column=0)
+        #item will hold the content itself, unless it is an image
         self.item=tk.Message(self.frame, text="", justify="center", width=400, bg="light blue")
         self.item.grid(row=1, column=0)
-        self.pic=tk.Label(self.frame, image=None)
+        self.pic=tk.Label(self.frame, image=None) #this will hold image content
         self.pic.grid(row=2, column=0)
-        self.frame.geometry("+%d+%d" % (1000, 100))
+        self.frame.geometry("+%d+%d" % (1000, 100)) #places the window on the right side of the screen
         self.copyButton=tk.Button(self.frame, text="Copy to clipboard", command=self.copyToClipBoard)
+        #button that will copy the content to the users clipboard
         self.copyButton.grid(row=3, column=0)
 
     def copyToClipBoard(self):
         if (self.lbl1['text']=="Cute Dog Picture"):
-             clipboard.copy(link)
+             clipboard.copy(link) #if the content is a picture, copy its url
         else:
-            clipboard.copy(self.item['text'])
+            clipboard.copy(self.item['text']) #else copy the text
 
-img=""
+img="" #needs to hold the image globally to prevent it from going out of scope
 link=""
 root=tk.Tk()
 fontStyle = tf.Font(family="Lucida Grande", size=20)
