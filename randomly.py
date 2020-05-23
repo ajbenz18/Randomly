@@ -10,15 +10,12 @@ import clipboard
 def autoResizeImage(image): 
     """given a PIL image, this function scales it down to a more reasonable size
      if its larger than 650x650"""
-    print(image.height, image.width)
     larger=image.height
     if (image.width>image.height):
         larger=image.width
     scale=larger/650
     if (image.height>650 or image.width>650):
         image=image.resize((int(image.width//scale), int(image.height/scale)))
-        print("resized it")
-        print(image.height, image.width)
     return image
 
 class ScrollFrame(tk.Frame): 
@@ -156,7 +153,6 @@ class Menu(tk.Frame):
         except tk.TclError:
             self.displayer=DisplayWindow(self.scrollFrame.viewPort)
         response=requests.get("https://api.quotable.io/random")
-        print(response.json())
         txt='"'+response.json()['content']+'"'+"\n"+"- "+response.json()['author']
         self.displayer.item.configure(text=txt)
         self.displayer.lbl1.configure(text="Famous Quotes")
