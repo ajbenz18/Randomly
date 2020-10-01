@@ -7,7 +7,7 @@ Running the python GUI on your desktop is simple. Just download the file and run
 
 Randomly Fun is available for download on the Google Play Store at https://play.google.com/store/apps/details?id=appinventor.ai_ajbenz18.jokeApp, or search "Randomly Fun AJ Bensman" on the Play Store application on your phone.
 
-The best way to view and edit the android code is by importing the .aia file into MIT App Inventor. Its free to sign up, and they allow you to create applications using some pretty simplistic drag-and-drop, block style coding.
+The best way to view and edit the android code is by importing the .aia file into MIT App Inventor. Its free to sign up, and they allow you to create applications using some pretty simplistic drag-and-drop, block style coding.It's Very easy and User friendly.
 
 If you find any bugs or other free web API's you'd like me to add functionality for let me know!
 
