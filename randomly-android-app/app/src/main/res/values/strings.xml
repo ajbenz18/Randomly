@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Randomly</string>
+    <string name="randomly">Randomly</string>
+    <string name="tell_me_a_joke">Tell me a joke!</string>
+    <string name="tell_me_an_interesting_fact">Tell me an interesting fact!</string>
+    <string name="give_me_advice">Give me advice!</string>
+    <string name="jokes">Jokes</string>
+    <string name="tell_me_another">Tell me another!</string>
+    <string name="back">Back</string>
+    <string name="give_me_kanye">Give me a Kanye West quote!</string>
+    <string name="give_me_quote">Give me a famous quote!</string>
+    <string name="give_me_nonsense">Give me corporate buzzword nonsense!</string>
+    <string name="give_me_cat">Give me a random cat fact!</string>
+    <string name="give_me_dog">Give me a random dog fact!</string>
+    <string name="share">Share</string>
+
+
+</resources>
